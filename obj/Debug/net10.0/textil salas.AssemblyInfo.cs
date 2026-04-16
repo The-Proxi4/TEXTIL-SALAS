@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("textil salas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98494aa9362257620a2b0650479a74b8b6305070")]
 [assembly: System.Reflection.AssemblyProductAttribute("textil salas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("textil salas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
