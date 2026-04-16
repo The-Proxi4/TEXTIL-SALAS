@@ -1,0 +1,48 @@
+﻿@using textil_salas.Models
+@model List<Product>
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <p class="eyebrow">Colección hotelera</p>
+            <h1>Toallas y batas premium para una experiencia elegante.</h1>
+            <p class="hero-copy">Prototipo frontend adaptado a ASP.NET Core MVC para tu exposición. Mantiene la idea visual del ecommerce y simplifica la lógica para poder explicarla fácil.</p>
+            <div class="hero-actions">
+                <a asp-action="Shop" class="btn btn-primary">Ver tienda</a>
+                <a asp-action="B2B" class="btn btn-outline">Solicitar cotización</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <img src="~/images/hero-towels.jpg" alt="Toallas premium" />
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <p class="eyebrow">Destacados</p>
+            <h2>Productos principales</h2>
+        </div>
+        <div class="product-grid">
+            @foreach (var item in Model)
+            {
+                <article class="product-card">
+                    <img src="@item.ImageUrl" alt="@item.Name" />
+                    <div class="product-body">
+                        <span class="badge">@item.Material · @item.Gsm GSM</span>
+                        <h3>@item.Name</h3>
+                        <p>@item.Description</p>
+                        <div class="product-meta">
+                            <strong>S/@item.Price.ToString("0.00")</strong>
+                            <span>Mín. B2B: @(item.B2BMinQty ?? 0)</span>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>

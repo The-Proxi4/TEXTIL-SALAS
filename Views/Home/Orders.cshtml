@@ -1,0 +1,38 @@
+@model List<OrderSummary>
+@{
+    ViewData["Title"] = "Mis pedidos";
+}
+
+<section class="page-header container narrow">
+    <p class="eyebrow">Cliente</p>
+    <h1>Mis pedidos</h1>
+    <p>Vista simple para seguimiento de pedidos y exposición del flujo.</p>
+</section>
+
+<section class="container section-tight">
+    <div class="table-wrap">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Pedido</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>#@item.Id</td>
+                    <td>@item.Customer</td>
+                    <td>S/@item.Total.ToString("0.00")</td>
+                    <td><span class="status-chip">@item.Status</span></td>
+                    <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

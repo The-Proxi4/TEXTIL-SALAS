@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Textil Salas</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a asp-controller="Home" asp-action="Index" class="brand">
+                <img src="~/images/logo.png" alt="Textil Salas" />
+            </a>
+            <nav class="main-nav">
+                <a asp-controller="Home" asp-action="Index">Inicio</a>
+                <a asp-controller="Home" asp-action="Shop">Tienda</a>
+                <a asp-controller="Home" asp-action="B2B">Empresas</a>
+                <a asp-controller="Admin" asp-action="Index">Admin</a>
+                <a asp-controller="Account" asp-action="Login" class="nav-accent">Ingresar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <img src="~/images/logo.png" alt="Textil Salas" class="footer-logo" />
+                <p>Fabricantes de toallas y batas premium para hogares, hoteles y corporativos.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <a asp-controller="Home" asp-action="Index">Inicio</a>
+                <a asp-controller="Home" asp-action="Shop">Tienda</a>
+                <a asp-controller="Home" asp-action="B2B">Empresas B2B</a>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>ventas@textilsalas.com</p>
+                <p>+51 999 999 999</p>
+            </div>
+        </div>
+        <div class="container footer-copy">© 2026 Corporación Textil Salas SAC.</div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

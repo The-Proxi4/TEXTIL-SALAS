@@ -1,0 +1,98 @@
+A:\textil salas\obj\Debug\net10.0\rpswa.dswa.cache.json
+A:\textil salas\obj\Debug\net10.0\textil salas.GeneratedMSBuildEditorConfig.editorconfig
+A:\textil salas\obj\Debug\net10.0\textil salas.AssemblyInfoInputs.cache
+A:\textil salas\obj\Debug\net10.0\textil salas.AssemblyInfo.cs
+A:\textil salas\obj\Debug\net10.0\textil salas.csproj.CoreCompileInputs.cache
+A:\textil salas\obj\Debug\net10.0\textil salas.MvcApplicationPartsAssemblyInfo.cache
+A:\textil salas\obj\Debug\net10.0\textil salas.RazorAssemblyInfo.cache
+A:\textil salas\obj\Debug\net10.0\textil salas.RazorAssemblyInfo.cs
+A:\textil salas\bin\Debug\net10.0\appsettings.Development.json
+A:\textil salas\bin\Debug\net10.0\appsettings.json
+A:\textil salas\bin\Debug\net10.0\textil salas.staticwebassets.runtime.json
+A:\textil salas\bin\Debug\net10.0\textil salas.staticwebassets.endpoints.json
+A:\textil salas\bin\Debug\net10.0\textil salas.exe
+A:\textil salas\bin\Debug\net10.0\textil salas.deps.json
+A:\textil salas\bin\Debug\net10.0\textil salas.runtimeconfig.json
+A:\textil salas\bin\Debug\net10.0\textil salas.dll
+A:\textil salas\bin\Debug\net10.0\textil salas.pdb
+A:\textil salas\obj\Debug\net10.0\rjimswa.dswa.cache.json
+A:\textil salas\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+A:\textil salas\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+A:\textil salas\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+A:\textil salas\obj\Debug\net10.0\scopedcss\bundle\textil salas.styles.css
+A:\textil salas\obj\Debug\net10.0\scopedcss\projectbundle\textil salas.bundle.scp.css
+A:\textil salas\obj\Debug\net10.0\compressed\l2sxydx5lt-{0}-1rj8kuh6i0-1rj8kuh6i0.gz
+A:\textil salas\obj\Debug\net10.0\compressed\nm5ql5c77a-{0}-61n19gt1b8-61n19gt1b8.gz
+A:\textil salas\obj\Debug\net10.0\compressed\a4ve266h09-{0}-w66elzoeg5-w66elzoeg5.gz
+A:\textil salas\obj\Debug\net10.0\compressed\n1ghox70xg-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
+A:\textil salas\obj\Debug\net10.0\compressed\wh8cr1pf5l-{0}-bqjiyaj88i-bqjiyaj88i.gz
+A:\textil salas\obj\Debug\net10.0\compressed\zeabjk8q0o-{0}-c2jlpeoesf-c2jlpeoesf.gz
+A:\textil salas\obj\Debug\net10.0\compressed\cqpprlcupf-{0}-erw9l3u2r3-erw9l3u2r3.gz
+A:\textil salas\obj\Debug\net10.0\compressed\wwib66jgei-{0}-aexeepp0ev-aexeepp0ev.gz
+A:\textil salas\obj\Debug\net10.0\compressed\louygra6sd-{0}-d7shbmvgxk-d7shbmvgxk.gz
+A:\textil salas\obj\Debug\net10.0\compressed\xfrs2sdnnx-{0}-ausgxo2sd3-ausgxo2sd3.gz
+A:\textil salas\obj\Debug\net10.0\compressed\610omfg6pp-{0}-k8d9w2qqmf-k8d9w2qqmf.gz
+A:\textil salas\obj\Debug\net10.0\compressed\hk281jig31-{0}-cosvhxvwiu-cosvhxvwiu.gz
+A:\textil salas\obj\Debug\net10.0\compressed\qcnxyflsjm-{0}-ub07r2b239-ub07r2b239.gz
+A:\textil salas\obj\Debug\net10.0\compressed\5bn2dkox3z-{0}-fvhpjtyr6v-fvhpjtyr6v.gz
+A:\textil salas\obj\Debug\net10.0\compressed\sw4j0bl6a9-{0}-b7pk76d08c-b7pk76d08c.gz
+A:\textil salas\obj\Debug\net10.0\compressed\h06wa1woa6-{0}-fsbi9cje9m-fsbi9cje9m.gz
+A:\textil salas\obj\Debug\net10.0\compressed\21hilku809-{0}-rzd6atqjts-rzd6atqjts.gz
+A:\textil salas\obj\Debug\net10.0\compressed\hlwffppo6o-{0}-ee0r1s7dh0-ee0r1s7dh0.gz
+A:\textil salas\obj\Debug\net10.0\compressed\redwt4hnft-{0}-dxx9fxp4il-dxx9fxp4il.gz
+A:\textil salas\obj\Debug\net10.0\compressed\klgqrz48et-{0}-jd9uben2k1-jd9uben2k1.gz
+A:\textil salas\obj\Debug\net10.0\compressed\znw23rlwh4-{0}-khv3u5hwcm-khv3u5hwcm.gz
+A:\textil salas\obj\Debug\net10.0\compressed\piyyjny6w4-{0}-r4e9w2rdcm-r4e9w2rdcm.gz
+A:\textil salas\obj\Debug\net10.0\compressed\29ska12sa4-{0}-lcd1t2u6c8-lcd1t2u6c8.gz
+A:\textil salas\obj\Debug\net10.0\compressed\5bjayk46yf-{0}-c2oey78nd0-c2oey78nd0.gz
+A:\textil salas\obj\Debug\net10.0\compressed\w57xeuckfl-{0}-tdbxkamptv-tdbxkamptv.gz
+A:\textil salas\obj\Debug\net10.0\compressed\9jh2j1vnl4-{0}-j5mq2jizvt-j5mq2jizvt.gz
+A:\textil salas\obj\Debug\net10.0\compressed\hzl5ygz2j2-{0}-06098lyss8-06098lyss8.gz
+A:\textil salas\obj\Debug\net10.0\compressed\9wq6vj199z-{0}-nvvlpmu67g-nvvlpmu67g.gz
+A:\textil salas\obj\Debug\net10.0\compressed\kil232x1p4-{0}-s35ty4nyc5-s35ty4nyc5.gz
+A:\textil salas\obj\Debug\net10.0\compressed\kdyr9psowi-{0}-pj5nd1wqec-pj5nd1wqec.gz
+A:\textil salas\obj\Debug\net10.0\compressed\257rwcphxm-{0}-46ein0sx1k-46ein0sx1k.gz
+A:\textil salas\obj\Debug\net10.0\compressed\zbfegtxtpc-{0}-v0zj4ognzu-v0zj4ognzu.gz
+A:\textil salas\obj\Debug\net10.0\compressed\t86wbeqf2d-{0}-37tfw0ft22-37tfw0ft22.gz
+A:\textil salas\obj\Debug\net10.0\compressed\wqfs4zp6z1-{0}-hrwsygsryq-hrwsygsryq.gz
+A:\textil salas\obj\Debug\net10.0\compressed\6g6sr2oupt-{0}-pk9g2wxc8p-pk9g2wxc8p.gz
+A:\textil salas\obj\Debug\net10.0\compressed\gpbsyr2gvi-{0}-ft3s53vfgj-ft3s53vfgj.gz
+A:\textil salas\obj\Debug\net10.0\compressed\lojdivetgi-{0}-6cfz1n2cew-6cfz1n2cew.gz
+A:\textil salas\obj\Debug\net10.0\compressed\5hcv6xan3h-{0}-6pdc2jztkx-6pdc2jztkx.gz
+A:\textil salas\obj\Debug\net10.0\compressed\yywksymsj1-{0}-493y06b0oq-493y06b0oq.gz
+A:\textil salas\obj\Debug\net10.0\compressed\z8wai0dkrh-{0}-iovd86k7lj-iovd86k7lj.gz
+A:\textil salas\obj\Debug\net10.0\compressed\qlmixgtwbs-{0}-vr1egmr9el-vr1egmr9el.gz
+A:\textil salas\obj\Debug\net10.0\compressed\wuyd52edwc-{0}-kbrnm935zg-kbrnm935zg.gz
+A:\textil salas\obj\Debug\net10.0\compressed\as2yw2fs6d-{0}-jj8uyg4cgr-jj8uyg4cgr.gz
+A:\textil salas\obj\Debug\net10.0\compressed\kgp8a509xp-{0}-y7v9cxd14o-y7v9cxd14o.gz
+A:\textil salas\obj\Debug\net10.0\compressed\0c1vhvmfqv-{0}-notf2xhcfb-notf2xhcfb.gz
+A:\textil salas\obj\Debug\net10.0\compressed\rlixbh3uei-{0}-h1s4sie4z3-h1s4sie4z3.gz
+A:\textil salas\obj\Debug\net10.0\compressed\qzgzfrdw4f-{0}-63fj8s7r0e-63fj8s7r0e.gz
+A:\textil salas\obj\Debug\net10.0\compressed\atzelddlwe-{0}-0j3bgjxly4-0j3bgjxly4.gz
+A:\textil salas\obj\Debug\net10.0\compressed\94nqbj4ruj-{0}-47otxtyo56-47otxtyo56.gz
+A:\textil salas\obj\Debug\net10.0\compressed\u8y0x0yrqh-{0}-4v8eqarkd7-4v8eqarkd7.gz
+A:\textil salas\obj\Debug\net10.0\compressed\em4xp8k4bx-{0}-356vix0kms-356vix0kms.gz
+A:\textil salas\obj\Debug\net10.0\compressed\bzrjyxmcbh-{0}-83jwlth58m-83jwlth58m.gz
+A:\textil salas\obj\Debug\net10.0\compressed\ot55zmn4mn-{0}-mrlpezrjn3-mrlpezrjn3.gz
+A:\textil salas\obj\Debug\net10.0\compressed\aswtuci2ay-{0}-lzl9nlhx6b-lzl9nlhx6b.gz
+A:\textil salas\obj\Debug\net10.0\compressed\6g9zjl2cnq-{0}-ag7o75518u-ag7o75518u.gz
+A:\textil salas\obj\Debug\net10.0\compressed\v529ij16va-{0}-x0q3zqp4vz-x0q3zqp4vz.gz
+A:\textil salas\obj\Debug\net10.0\compressed\wjv4xgb5wq-{0}-0i3buxo5is-0i3buxo5is.gz
+A:\textil salas\obj\Debug\net10.0\compressed\avox87rebr-{0}-o1o13a6vjx-o1o13a6vjx.gz
+A:\textil salas\obj\Debug\net10.0\compressed\qgmvbbibnw-{0}-ttgo8qnofa-ttgo8qnofa.gz
+A:\textil salas\obj\Debug\net10.0\compressed\4yeg9zzkd2-{0}-2z0ns9nrw6-2z0ns9nrw6.gz
+A:\textil salas\obj\Debug\net10.0\compressed\3rdwhq6zde-{0}-muycvpuwrr-muycvpuwrr.gz
+A:\textil salas\obj\Debug\net10.0\compressed\5e6buiflv3-{0}-87fc7y1x7t-87fc7y1x7t.gz
+A:\textil salas\obj\Debug\net10.0\compressed\y1azs8bjq1-{0}-mlv21k5csn-mlv21k5csn.gz
+A:\textil salas\obj\Debug\net10.0\compressed\b5945pjw39-{0}-9bvgqcxhvo-9bvgqcxhvo.gz
+A:\textil salas\obj\Debug\net10.0\compressed\prnlvnmuqa-{0}-9bvgqcxhvo-9bvgqcxhvo.gz
+A:\textil salas\obj\Debug\net10.0\staticwebassets.build.json
+A:\textil salas\obj\Debug\net10.0\staticwebassets.build.json.cache
+A:\textil salas\obj\Debug\net10.0\staticwebassets.development.json
+A:\textil salas\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+A:\textil salas\obj\Debug\net10.0\swae.build.ex.cache
+A:\textil salas\obj\Debug\net10.0\textil salas.dll
+A:\textil salas\obj\Debug\net10.0\refint\textil salas.dll
+A:\textil salas\obj\Debug\net10.0\textil salas.pdb
+A:\textil salas\obj\Debug\net10.0\textil salas.genruntimeconfig.cache
+A:\textil salas\obj\Debug\net10.0\ref\textil salas.dll

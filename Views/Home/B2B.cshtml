@@ -1,0 +1,91 @@
+@model B2BQuoteViewModel
+@{
+    ViewData["Title"] = "Empresas";
+}
+
+<section class="hero hero-dark compact">
+    <div class="container narrow text-center">
+        <p class="eyebrow">Programa empresarial</p>
+        <h1>Compras corporativas</h1>
+        <p>Textiles premium para hoteles, spas, gimnasios y empresas con precios por volumen.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container benefits-grid">
+        <article class="info-card"><h3>Precios mayoreo</h3><p>Descuentos escalonados desde 50 unidades.</p></article>
+        <article class="info-card"><h3>Personalización</h3><p>Bordado de logo y colores a medida.</p></article>
+        <article class="info-card"><h3>Envío directo</h3><p>Entregas programadas a hoteles y corporativos.</p></article>
+        <article class="info-card"><h3>Cuenta dedicada</h3><p>Atención comercial con respuesta en 24 horas.</p></article>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container grid-2 align-start">
+        <div class="panel">
+            <div class="section-heading left">
+                <p class="eyebrow">Cotización</p>
+                <h2>Solicita una cotización</h2>
+            </div>
+
+            @if (TempData["Success"] is string success)
+            {
+                <div class="alert-success">@success</div>
+            }
+
+            <form method="post" class="form-stack">
+                @Html.AntiForgeryToken()
+                <div>
+                    <label asp-for="Company"></label>
+                    <input asp-for="Company" />
+                    <span asp-validation-for="Company" class="field-error"></span>
+                </div>
+                <div>
+                    <label asp-for="Ruc"></label>
+                    <input asp-for="Ruc" maxlength="11" />
+                    <span asp-validation-for="Ruc" class="field-error"></span>
+                </div>
+                <div>
+                    <label asp-for="ContactName"></label>
+                    <input asp-for="ContactName" />
+                    <span asp-validation-for="ContactName" class="field-error"></span>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" />
+                        <span asp-validation-for="Email" class="field-error"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Phone"></label>
+                        <input asp-for="Phone" />
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="Message"></label>
+                    <textarea asp-for="Message" rows="4"></textarea>
+                    <span asp-validation-for="Message" class="field-error"></span>
+                </div>
+                <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+            </form>
+        </div>
+
+        <aside class="panel">
+            <div class="section-heading left">
+                <p class="eyebrow">Detalle demo</p>
+                <h2>Cotización referencial</h2>
+            </div>
+            <div id="quote-detail"></div>
+            <div class="quote-total">
+                <span>Total estimado</span>
+                <strong id="quote-total">S/ 0.00</strong>
+            </div>
+            <p class="help-note">Este bloque está en JavaScript simple para que puedas modificarlo en clase sin complicarte.</p>
+        </aside>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/b2b.js" asp-append-version="true"></script>
+}

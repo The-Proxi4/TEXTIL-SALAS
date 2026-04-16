@@ -1,0 +1,61 @@
+@using textil_salas.Models
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<section class="page-header container">
+    <p class="eyebrow">Backoffice</p>
+    <h1>Panel de administración</h1>
+    <p>Base visual inspirada en tu proyecto original, pero simplificada para MVC.</p>
+</section>
+
+<section class="container section-tight">
+    <div class="stats-grid">
+        <div class="stat-card"><span>Ingresos</span><strong>S/@Model.TotalRevenue.ToString("0.00")</strong></div>
+        <div class="stat-card"><span>Pedidos</span><strong>@Model.TotalOrders</strong></div>
+        <div class="stat-card"><span>Productos</span><strong>@Model.TotalProducts</strong></div>
+        <div class="stat-card"><span>Clientes</span><strong>@Model.TotalCustomers</strong></div>
+    </div>
+
+    <div class="grid-2 admin-sections">
+        <div class="panel">
+            <div class="section-heading left"><h2>Pedidos recientes</h2></div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Cliente</th><th>Total</th><th>Estado</th></tr></thead>
+                    <tbody>
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr>
+                            <td>#@item.Id</td>
+                            <td>@item.Customer</td>
+                            <td>S/@item.Total.ToString("0.00")</td>
+                            <td>@item.Status</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="section-heading left"><h2>Cotizaciones B2B</h2></div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Empresa</th><th>Contacto</th><th>Estado</th></tr></thead>
+                    <tbody>
+                    @foreach (var item in Model.Quotes)
+                    {
+                        <tr>
+                            <td>#@item.Id</td>
+                            <td>@item.Company</td>
+                            <td>@item.Contact</td>
+                            <td>@item.Status</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

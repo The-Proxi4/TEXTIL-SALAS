@@ -1,0 +1,42 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Tienda";
+    var category = (string?)ViewBag.Category ?? "all";
+    var query = (string?)ViewBag.Query ?? string.Empty;
+}
+
+<section class="page-header container narrow">
+    <p class="eyebrow">Catálogo</p>
+    <h1>Nuestra Tienda</h1>
+    <p>100% algodón prima · 700–750 GSM · precios en soles.</p>
+</section>
+
+<section class="container section-tight">
+    <form method="get" class="filters-bar">
+        <input type="text" name="q" value="@query" placeholder="Buscar productos..." />
+        <select name="category">
+            <option value="all" selected="@(category=="all")">Todo</option>
+            <option value="towel" selected="@(category=="towel")">Toallas</option>
+            <option value="robe" selected="@(category=="robe")">Batas</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Filtrar</button>
+    </form>
+
+    <div class="product-grid">
+        @foreach (var item in Model)
+        {
+            <article class="product-card">
+                <img src="@item.ImageUrl" alt="@item.Name" />
+                <div class="product-body">
+                    <span class="badge">@item.Subcategory</span>
+                    <h3>@item.Name</h3>
+                    <p>@item.Description</p>
+                    <div class="product-meta">
+                        <strong>S/@item.Price.ToString("0.00")</strong>
+                        <span>@string.Join(" · ", item.Sizes)</span>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>
