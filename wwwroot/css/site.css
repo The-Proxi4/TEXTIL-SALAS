@@ -401,3 +401,42 @@ img {
     grid-template-columns: 1fr;
   }
 }
+.form-panel {
+    padding: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.spaced {
+    gap: 16px;
+}
+
+.gap {
+    gap: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.quote-panel {
+    padding: 24px;
+}
+
+.quote-box {
+    min-height: 120px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}

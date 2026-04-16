@@ -1,3 +1,5 @@
+@model textil_salas.Models.LoginViewModel
+
 @{
     ViewData["Title"] = "Ingresar";
 }
@@ -6,24 +8,65 @@
     <div class="container narrow text-center">
         <p class="eyebrow">Acceso</p>
         <h1>Ingreso al sistema</h1>
-        <p>Vista demo para explicar autenticación dentro de una arquitectura MVC.</p>
+        <p>Bienvenido de vuelta. Ingresa tus credenciales para continuar.</p>
     </div>
 </section>
 
 <section class="section">
     <div class="container narrow">
+
+        @* CA-2: Error de credenciales *@
+        @if (!ViewData.ModelState.IsValid && ViewData.ModelState[""] != null)
+        {
+            <div class="alert-success" style="background:#fef2f2; border-color:#fca5a5; color:#991b1b; margin-bottom:16px;">
+                 @Html.ValidationSummary(true)
+            </div>
+        }
+        @if (TempData["RegistroExitoso"] != null)
+{
+    <div class="alert-success">✓ @TempData["RegistroExitoso"]</div>
+}
+
         <div class="panel">
-            <form class="form-stack">
+            <form asp-action="Login" method="post" class="form-stack">
+                @Html.AntiForgeryToken()
+
+                @* CA-3: Email obligatorio + formato *@
                 <div>
-                    <label>Correo</label>
-                    <input type="email" placeholder="admin@textilsalas.com" />
+                    <label asp-for="Email">Correo electrónico</label>
+                    <input asp-for="Email" type="email" placeholder="correo@ejemplo.com" />
+                    <span asp-validation-for="Email" class="field-error"></span>
                 </div>
+
+                @* CA-3: Contraseña obligatoria + oculta *@
                 <div>
-                    <label>Contraseña</label>
-                    <input type="password" placeholder="••••••••" />
+                    <label asp-for="Password">Contraseña</label>
+                    <input asp-for="Password" type="password" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="field-error"></span>
                 </div>
-                <button type="button" class="btn btn-primary">Ingresar</button>
+
+                @* CA-1: Botón ingresar *@
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+
+                @* CA-4: Redirigir a registro *@
+                
+                <p class="help-note text-center">
+                    <a asp-action="ForgotPassword" asp-controller="Account"  style="color: var(--accent); font-weight:600;">
+                              
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                         ¿No tienes cuenta?
+                    <a asp-controller="Account" asp-action="Register"
+                       style="color: var(--accent); font-weight:600;">
+                        Regístrate
+                    </a>
+                </p>
+
             </form>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
