@@ -23,7 +23,6 @@ public class Product
 
     public string? Subcategory { get; set; }
 
-    [Url(ErrorMessage = "La URL de la imagen no es válida")]
     public string? ImageUrl { get; set; }
 
     [Required(ErrorMessage = "El material es obligatorio")]
