@@ -12,7 +12,7 @@ namespace textil_salas.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View(FakeDatabase.Categorias);
+            return View(FakeDatabase.Instance.Categorias);
         }
 
         // CA-2: Formulario crear
@@ -36,9 +36,9 @@ namespace textil_salas.Controllers
                 return View(model);
             }
 
-            model.Id = FakeDatabase.NextCategoriaId++;
+            model.Id = FakeDatabase.Instance.NextCategoriaId++;
             model.Activo = true;
-            FakeDatabase.Categorias.Add(model);
+            FakeDatabase.Instance.Categorias.Add(model);
 
             TempData["Exito"] = $"Categoría '{model.Nombre}' creada correctamente.";
             return RedirectToAction(nameof(Index));
@@ -110,14 +110,14 @@ namespace textil_salas.Controllers
 
         private static bool IsDuplicateName(string nombre, int excludeId = 0)
         {
-            return FakeDatabase.Categorias
+            return FakeDatabase.Instance.Categorias
                 .Any(c => c.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)
                           && c.Id != excludeId);
         }
 
         private static Categoria? GetCategoriaById(int id)
         {
-            return FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
+            return FakeDatabase.Instance.Categorias.FirstOrDefault(c => c.Id == id);
         }
     }
 }
