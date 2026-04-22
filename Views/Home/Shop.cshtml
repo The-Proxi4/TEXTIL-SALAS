@@ -12,15 +12,22 @@
 </section>
 
 <section class="container section-tight">
-    <form method="get" class="filters-bar">
-        <input type="text" name="q" value="@query" placeholder="Buscar productos..." />
-        <select name="category">
-            <option value="all" selected="@(category=="all")">Todo</option>
-            <option value="towel" selected="@(category=="towel")">Toallas</option>
-            <option value="robe" selected="@(category=="robe")">Batas</option>
-        </select>
-        <button class="btn btn-primary" type="submit">Filtrar</button>
-    </form>
+<form method="get" class="filters-bar">
+    <input type="text" name="q" value="@query" placeholder="Buscar productos..." />
+
+    <select name="category">
+        <option value="all">Todo</option>
+
+        @foreach (var cat in ViewBag.CategoriasActivas)
+        {
+            <option value="@cat.Nombre" selected="@(category == cat.Nombre)">
+                @cat.Nombre
+            </option>
+        }
+    </select>
+
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
 
     <div class="product-grid">
         @foreach (var item in Model)

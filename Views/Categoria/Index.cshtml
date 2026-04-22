@@ -1,0 +1,86 @@
+@model List<textil_salas.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Gestión de Categorías";
+}
+
+<section class="page-header container">
+    <p class="eyebrow">Backoffice</p>
+    <h1>Gestión de Catálogo</h1>
+    <p>Administra las categorías de productos del ecommerce.</p>
+</section>
+
+<section class="container section-tight">
+
+    @* Mensaje de éxito *@
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert-success">✓ @TempData["Exito"]</div>
+    }
+
+    <div class="panel">
+        <div class="section-heading left" style="display:flex; justify-content:space-between; align-items:center; padding: 20px 20px 0;">
+            <h2 style="margin:0;">Categorías</h2>
+            <a asp-controller="Categoria" asp-action="Create" class="btn btn-primary">+ Nueva categoría</a>
+        </div>
+
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cat in Model)
+                    {
+                        <tr>
+                            <td>#@cat.Id</td>
+                            <td>@cat.Nombre</td>
+                            <td style="color: var(--muted);">@cat.Descripcion</td>
+                            <td>
+                                <span class="status-chip" style="@(cat.Activo ? "background:#e7f7ed; color:#116530;" : "background:#fee2e2; color:#991b1b;")">
+                                    @(cat.Activo ? "Activo" : "Inactivo")
+                                </span>
+                            </td>
+                            <td style="display:flex; gap:8px; flex-wrap:wrap;">
+                                @* CA-3: Editar *@
+                                <a asp-controller="Categoria" asp-action="Edit" asp-route-id="@cat.Id"
+                                   class="btn btn-outline" style="padding:8px 14px; font-size:0.85rem;">
+                                    Editar
+                                </a>
+
+                                @* CA-4: Soft delete / reactivar *@
+                                @if (cat.Activo)
+                                {
+                                    <form asp-controller="Categoria" asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn"
+                                                style="background:#fee2e2; color:#991b1b; border-color:#fca5a5; padding:8px 14px; font-size:0.85rem;"
+                                                onclick="return confirm('¿Desactivar esta categoría?')">
+                                            Desactivar
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-controller="Categoria" asp-action="Activate" asp-route-id="@cat.Id" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn"
+                                                style="background:#e7f7ed; color:#116530; border-color:#b4e2c2; padding:8px 14px; font-size:0.85rem;">
+                                            Reactivar
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -27,22 +27,31 @@
             <p class="eyebrow">Destacados</p>
             <h2>Productos principales</h2>
         </div>
-        <div class="product-grid">
-            @foreach (var item in Model)
-            {
-                <article class="product-card">
-                    <img src="@item.ImageUrl" alt="@item.Name" />
-                    <div class="product-body">
-                        <span class="badge">@item.Material · @item.Gsm GSM</span>
-                        <h3>@item.Name</h3>
-                        <p>@item.Description</p>
-                        <div class="product-meta">
-                            <strong>S/@item.Price.ToString("0.00")</strong>
-                            <span>Mín. B2B: @(item.B2BMinQty ?? 0)</span>
-                        </div>
-                    </div>
-                </article>
-            }
-        </div>
+<div class="product-grid">
+    @foreach (var item in Model)
+    {
+        <article class="product-card">
+            <img src="@item.ImageUrl" alt="@item.Name" />
+
+            <div class="product-body">
+                <!-- Igual que tienda -->
+                <span class="badge">@item.Subcategory</span>
+
+                <h3>@item.Name</h3>
+
+                <p>@item.Description</p>
+
+                <div class="product-meta">
+                    <strong>S/@item.Price.ToString("0.00")</strong>
+
+                    @if (item.Sizes != null)
+                    {
+                        <span>@string.Join(" · ", item.Sizes)</span>
+                    }
+                </div>
+            </div>
+        </article>
+    }
+</div>
     </div>
 </section>

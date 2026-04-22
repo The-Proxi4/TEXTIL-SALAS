@@ -1,0 +1,46 @@
+@model textil_salas.Models.Categoria
+
+@{
+    ViewData["Title"] = "Editar Categoría";
+}
+
+<section class="hero hero-dark compact">
+    <div class="container narrow text-center">
+        <p class="eyebrow">Backoffice</p>
+        <h1>Editar Categoría</h1>
+        <p>Modifica los datos de la categoría seleccionada.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container narrow">
+        <div class="panel">
+            <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="form-stack">
+                @Html.AntiForgeryToken()
+
+                <input asp-for="Id" type="hidden" />
+
+                <div>
+                    <label asp-for="Nombre">Nombre de la categoría</label>
+                    <input asp-for="Nombre" type="text" />
+                    <span asp-validation-for="Nombre" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Descripcion">Descripción</label>
+                    <textarea asp-for="Descripcion" rows="3"></textarea>
+                </div>
+
+                <div style="display:flex; gap:12px;">
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <a asp-controller="Categoria" asp-action="Index" class="btn btn-outline">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
