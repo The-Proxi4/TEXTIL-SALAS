@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using textil_salas.Models;
 
@@ -28,13 +30,9 @@ namespace textil_salas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Validar nombre duplicado
-            bool duplicado = FakeDatabase.Categorias
-                .Any(c => c.Nombre.Equals(model.Nombre, StringComparison.OrdinalIgnoreCase));
-
-            if (duplicado)
+            if (IsDuplicateName(model.Nombre))
             {
-                ModelState.AddModelError("Nombre", "Ya existe una categoría con ese nombre.");
+                ModelState.AddModelError(nameof(model.Nombre), "Ya existe una categoría con ese nombre.");
                 return View(model);
             }
 
@@ -43,16 +41,18 @@ namespace textil_salas.Controllers
             FakeDatabase.Categorias.Add(model);
 
             TempData["Exito"] = $"Categoría '{model.Nombre}' creada correctamente.";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         // CA-3: Formulario editar
         [HttpGet("editar/{id}")]
         public IActionResult Edit(int id)
         {
-            var cat = FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
-            if (cat == null) return NotFound();
-            return View(cat);
+            var categoria = GetCategoriaById(id);
+            if (categoria == null)
+                return NotFound();
+
+            return View(categoria);
         }
 
         // CA-3: Guardar cambios
@@ -63,24 +63,21 @@ namespace textil_salas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Validar nombre duplicado (ignorar la misma categoría)
-            bool duplicado = FakeDatabase.Categorias
-                .Any(c => c.Nombre.Equals(model.Nombre, StringComparison.OrdinalIgnoreCase) && c.Id != id);
-
-            if (duplicado)
+            if (IsDuplicateName(model.Nombre, id))
             {
-                ModelState.AddModelError("Nombre", "Ya existe una categoría con ese nombre.");
+                ModelState.AddModelError(nameof(model.Nombre), "Ya existe una categoría con ese nombre.");
                 return View(model);
             }
 
-            var cat = FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
-            if (cat == null) return NotFound();
+            var categoria = GetCategoriaById(id);
+            if (categoria == null)
+                return NotFound();
 
-            cat.Nombre = model.Nombre;
-            cat.Descripcion = model.Descripcion;
+            categoria.Nombre = model.Nombre;
+            categoria.Descripcion = model.Descripcion;
 
-            TempData["Exito"] = $"Categoría '{cat.Nombre}' actualizada.";
-            return RedirectToAction("Index");
+            TempData["Exito"] = $"Categoría '{categoria.Nombre}' actualizada.";
+            return RedirectToAction(nameof(Index));
         }
 
         // CA-4: Soft delete — cambia Activo a false
@@ -88,13 +85,13 @@ namespace textil_salas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var cat = FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
-            if (cat == null) return NotFound();
+            var categoria = GetCategoriaById(id);
+            if (categoria == null)
+                return NotFound();
 
-            cat.Activo = false;
-
-            TempData["Exito"] = $"Categoría '{cat.Nombre}' desactivada.";
-            return RedirectToAction("Index");
+            categoria.Activo = false;
+            TempData["Exito"] = $"Categoría '{categoria.Nombre}' desactivada.";
+            return RedirectToAction(nameof(Index));
         }
 
         // Reactivar (bonus útil para la demo)
@@ -102,13 +99,25 @@ namespace textil_salas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Activate(int id)
         {
-            var cat = FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
-            if (cat == null) return NotFound();
+            var categoria = GetCategoriaById(id);
+            if (categoria == null)
+                return NotFound();
 
-            cat.Activo = true;
+            categoria.Activo = true;
+            TempData["Exito"] = $"Categoría '{categoria.Nombre}' reactivada.";
+            return RedirectToAction(nameof(Index));
+        }
 
-            TempData["Exito"] = $"Categoría '{cat.Nombre}' reactivada.";
-            return RedirectToAction("Index");
+        private static bool IsDuplicateName(string nombre, int excludeId = 0)
+        {
+            return FakeDatabase.Categorias
+                .Any(c => c.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase)
+                          && c.Id != excludeId);
+        }
+
+        private static Categoria? GetCategoriaById(int id)
+        {
+            return FakeDatabase.Categorias.FirstOrDefault(c => c.Id == id);
         }
     }
 }
