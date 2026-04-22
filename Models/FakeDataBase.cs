@@ -68,5 +68,7 @@ namespace textil_salas.Models
         };
 
         public int NextCategoriaId { get; set; } = 6;
+
+        public int NextProductId { get; set; } = 5;
     }
 }

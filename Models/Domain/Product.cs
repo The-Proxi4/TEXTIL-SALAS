@@ -36,4 +36,6 @@ public class Product
 
     [Range(1, int.MaxValue, ErrorMessage = "La cantidad mínima B2B debe ser mayor a 0")]
     public int? B2BMinQty { get; set; }
+
+    public bool IsActive { get; set; } = true;
 }

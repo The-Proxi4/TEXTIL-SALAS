@@ -9,5 +9,6 @@ namespace textil_salas.Models
         List<Categoria> Categorias { get; set; }
         List<Product> Products { get; set; }
         int NextCategoriaId { get; set; }
+        int NextProductId { get; set; }
     }
 }

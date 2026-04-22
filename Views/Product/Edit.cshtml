@@ -1,0 +1,97 @@
+@model textil_salas.Models.Product
+
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+<section class="hero hero-dark compact">
+    <div class="container narrow text-center">
+        <p class="eyebrow">Backoffice</p>
+        <h1>Editar Producto</h1>
+        <p>Actualiza los datos del producto.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container narrow">
+        <div class="panel">
+            <form asp-action="Edit" method="post" class="form-stack">
+                @Html.AntiForgeryToken()
+
+                <div>
+                    <label asp-for="Name">Nombre del producto</label>
+                    <input asp-for="Name" type="text" />
+                    <span asp-validation-for="Name" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Description">Descripción</label>
+                    <textarea asp-for="Description" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Price">Precio (S/)</label>
+                    <input asp-for="Price" type="number" step="0.01" />
+                    <span asp-validation-for="Price" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Category">Categoría</label>
+                    <select asp-for="Category">
+                        @foreach (var cat in ViewBag.CategoriasActivas)
+                        {
+                            <option value="@cat.Nombre" selected="@(Model.Category == cat.Nombre ? "selected" : null)">@cat.Nombre</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Category" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Subcategory">Subcategoría</label>
+                    <input asp-for="Subcategory" type="text" />
+                </div>
+
+                <div>
+                    <label asp-for="ImageUrl">URL de la imagen</label>
+                    <input asp-for="ImageUrl" type="url" />
+                    <span asp-validation-for="ImageUrl" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Material">Material</label>
+                    <input asp-for="Material" type="text" />
+                    <span asp-validation-for="Material" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Gsm">GSM</label>
+                    <input asp-for="Gsm" type="number" />
+                    <span asp-validation-for="Gsm" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Sizes">Tamaños (separados por coma)</label>
+                    <input name="SizesString" type="text" value="@ViewBag.SizesString" />
+                    <span asp-validation-for="Sizes" class="field-error"></span>
+                </div>
+
+                <div>
+                    <label asp-for="B2BMinQty">Cantidad mínima B2B</label>
+                    <input asp-for="B2BMinQty" type="number" />
+                    <span asp-validation-for="B2BMinQty" class="field-error"></span>
+                </div>
+
+                <div style="display:flex; gap:12px;">
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-outline">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

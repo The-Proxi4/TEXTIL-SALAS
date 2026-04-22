@@ -55,7 +55,7 @@ public class HomeController : Controller
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         return FakeDatabase.Instance.Products
-            .Where(p => categoriasActivas.Contains(p.Category));
+            .Where(p => categoriasActivas.Contains(p.Category) && p.IsActive);
     }
 
     private static IEnumerable<Product> FilterProductsByQuery(IEnumerable<Product> products, string? query)
