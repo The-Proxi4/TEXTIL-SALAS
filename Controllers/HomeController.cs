@@ -49,12 +49,12 @@ public class HomeController : Controller
 
     private static IEnumerable<Product> GetActiveProducts()
     {
-        var categoriasActivas = FakeDatabase.Categorias
+        var categoriasActivas = FakeDatabase.Instance.Categorias
             .Where(c => c.Activo)
             .Select(c => c.Nombre)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return FakeDatabase.Products
+        return FakeDatabase.Instance.Products
             .Where(p => categoriasActivas.Contains(p.Category));
     }
 
@@ -76,7 +76,7 @@ public class HomeController : Controller
 
     private static List<Categoria> GetActiveCategories()
     {
-        return FakeDatabase.Categorias
+        return FakeDatabase.Instance.Categorias
             .Where(c => c.Activo)
             .ToList();
     }
@@ -92,6 +92,6 @@ public class HomeController : Controller
 
     private static List<Product> GetFeaturedProducts()
     {
-        return FakeDatabase.Products.Take(4).ToList();
+        return FakeDatabase.Instance.Products.Take(4).ToList();
     }
 }

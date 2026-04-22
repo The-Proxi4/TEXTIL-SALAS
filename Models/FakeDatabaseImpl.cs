@@ -2,10 +2,8 @@ using System.Collections.Generic;
 
 namespace textil_salas.Models
 {
-    public class FakeDatabase : IFakeDatabase
+    public class FakeDatabaseImpl : IFakeDatabase
     {
-        public static IFakeDatabase Instance { get; } = new FakeDatabaseImpl();
-
         public List<User> Users { get; set; } = new();
 
         public string? ResetEmail { get; set; }

@@ -36,7 +36,7 @@ namespace textil_salas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            FakeDatabase.Users.Add(new User
+            FakeDatabase.Instance.Users.Add(new User
             {
                 Email = model.Email,
                 Password = model.Password
@@ -66,7 +66,7 @@ namespace textil_salas.Controllers
                 return View();
             }
 
-            FakeDatabase.ResetEmail = email;
+            FakeDatabase.Instance.ResetEmail = email;
             TempData["Reset"] = "Se ha enviado un enlace de recuperación (simulado)";
             return RedirectToAction(nameof(ResetPassword));
         }
@@ -74,7 +74,7 @@ namespace textil_salas.Controllers
         [HttpGet]
         public IActionResult ResetPassword()
         {
-            if (string.IsNullOrWhiteSpace(FakeDatabase.ResetEmail))
+            if (string.IsNullOrWhiteSpace(FakeDatabase.Instance.ResetEmail))
                 return RedirectToAction(nameof(Login));
 
             return View();
@@ -90,25 +90,25 @@ namespace textil_salas.Controllers
                 return View();
             }
 
-            var user = GetUserByEmail(FakeDatabase.ResetEmail);
+            var user = GetUserByEmail(FakeDatabase.Instance.ResetEmail);
             if (user != null)
                 user.Password = password;
 
-            FakeDatabase.ResetEmail = null;
+            FakeDatabase.Instance.ResetEmail = null;
             TempData["Success"] = "Contraseña actualizada correctamente";
             return RedirectToAction(nameof(Login));
         }
 
         private bool TryAuthenticate(string email, string password, out User user)
         {
-            user = FakeDatabase.Users
+            user = FakeDatabase.Instance.Users
                 .FirstOrDefault(u => u.Email == email && u.Password == password);
             return user != null;
         }
 
         private User GetUserByEmail(string email)
         {
-            return FakeDatabase.Users.FirstOrDefault(u => u.Email == email);
+            return FakeDatabase.Instance.Users.FirstOrDefault(u => u.Email == email);
         }
     }
 }
