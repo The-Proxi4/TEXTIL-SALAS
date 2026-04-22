@@ -28,7 +28,11 @@ namespace textil_salas.Models
                 Category = "Toallas de mano",
                 Subcategory = "Mano",
                 ImageUrl = "/images/towel-hand.jpg",
-                Sizes = new[] { "40x70cm", "50x80cm" }
+                Material = "Algodón prima",
+                Gsm = 700,
+                Sizes = new[] { "40x70cm", "50x80cm" },
+                B2BMinQty = 10,
+                IsActive = true
             },
             new Product
             {
@@ -39,7 +43,11 @@ namespace textil_salas.Models
                 Category = "Toallas de piso",
                 Subcategory = "Piso",
                 ImageUrl = "/images/towel-floor.jpg",
-                Sizes = new[] { "50x70cm", "60x90cm" }
+                Material = "Algodón prima",
+                Gsm = 750,
+                Sizes = new[] { "50x70cm", "60x90cm" },
+                B2BMinQty = 5,
+                IsActive = true
             },
             new Product
             {
@@ -50,7 +58,11 @@ namespace textil_salas.Models
                 Category = "Toallas de baño",
                 Subcategory = "Baño",
                 ImageUrl = "/images/towel-white.jpg",
-                Sizes = new[] { "70x140cm", "80x160cm" }
+                Material = "Algodón prima",
+                Gsm = 750,
+                Sizes = new[] { "70x140cm", "80x160cm" },
+                B2BMinQty = 10,
+                IsActive = true
             },
             new Product
             {
@@ -61,10 +73,16 @@ namespace textil_salas.Models
                 Category = "Batas",
                 Subcategory = "Bata",
                 ImageUrl = "/images/robe-white.jpg",
-                Sizes = new[] { "S", "M", "L", "XL" }
+                Material = "Algodón prima",
+                Gsm = 700,
+                Sizes = new[] { "S", "M", "L", "XL" },
+                B2BMinQty = 5,
+                IsActive = true
             }
         };
 
         public int NextCategoriaId { get; set; } = 6;
+
+        public int NextProductId { get; set; } = 5;
     }
 }

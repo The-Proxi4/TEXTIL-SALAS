@@ -23,8 +23,7 @@ public class Product
 
     public string? Subcategory { get; set; }
 
-    [Url(ErrorMessage = "La URL de la imagen no es válida")]
-    public string ImageUrl { get; set; } = string.Empty;
+    public string? ImageUrl { get; set; }
 
     [Required(ErrorMessage = "El material es obligatorio")]
     public string Material { get; set; } = string.Empty;
@@ -36,4 +35,6 @@ public class Product
 
     [Range(1, int.MaxValue, ErrorMessage = "La cantidad mínima B2B debe ser mayor a 0")]
     public int? B2BMinQty { get; set; }
+
+    public bool IsActive { get; set; } = true;
 }
