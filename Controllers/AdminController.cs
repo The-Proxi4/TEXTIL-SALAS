@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using textil_salas.Models;
 
 namespace textil_salas.Controllers
 {
+    [Authorize]
     [Route("admin")]
     public class AdminController : Controller
     {
