@@ -17,7 +17,7 @@
     <a asp-controller="Home" asp-action="Shop">Tienda</a>
     <a asp-controller="Home" asp-action="B2B">Empresas</a>
     <a asp-controller="Admin" asp-action="Index">Admin</a>
-    <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+    @await Html.PartialAsync("_LoginPartial")
 </nav>
         </div>
     </header>
