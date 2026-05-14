@@ -77,13 +77,13 @@
                     <label>Método de pago</label>
                     <div class="payment-options">
                         <label>
-                            <input type="radio" name="PaymentMethod" value="Yape" @(Model.PaymentMethod == "Yape" ? "checked" : "") /> Yape
+                            <input type="radio" name="PaymentMethod" value="Yape/Plin" @(Model.PaymentMethod == "Yape/Plin" ? "checked" : "") /> Yape / Plin
                         </label>
                         <label>
-                            <input type="radio" name="PaymentMethod" value="PlinPag" @(Model.PaymentMethod == "PlinPag" ? "checked" : "") /> PlinPag
+                            <input type="radio" name="PaymentMethod" value="Tarjeta" @(Model.PaymentMethod == "Tarjeta" ? "checked" : "") /> Tarjeta débito / crédito
                         </label>
                         <label>
-                            <input type="radio" name="PaymentMethod" value="Efectivo" @(Model.PaymentMethod == "Efectivo" ? "checked" : "") /> Efectivo
+                            <input type="radio" name="PaymentMethod" value="Efectivo" @(Model.PaymentMethod == "Efectivo" ? "checked" : "") /> Pago en efectivo
                         </label>
                     </div>
                     <span asp-validation-for="PaymentMethod" class="field-error"></span>
