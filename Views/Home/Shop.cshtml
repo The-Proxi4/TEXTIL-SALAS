@@ -11,6 +11,15 @@
     <p>100% algodón prima · 700–750 GSM · precios en soles.</p>
 </section>
 
+<div class="shop-top-actions container">
+    <div>
+        <p class="eyebrow">Carrito rápido</p>
+        <h2>Tu carrito siempre disponible</h2>
+        <p>Accede a tu carrito desde aquí y sigue comprando sin perder tu selección.</p>
+    </div>
+    <a asp-controller="Cart" asp-action="Index" class="btn btn-primary shop-cart-button">🛒 Ver carrito</a>
+</div>
+
 <section class="container section-tight">
 <form method="get" class="filters-bar">
     <input type="text" name="q" value="@query" placeholder="Buscar productos..." />
@@ -47,12 +56,19 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="productId" value="@item.Id" />
                     <div class="product-cart-controls">
-                        <label>Cantidad</label>
-                        <input type="number" name="quantity" min="1" value="1" />
-                        <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                        <div class="quantity-field">
+                            <label>Cantidad</label>
+                            <input type="number" name="quantity" min="1" value="1" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Añadir</button>
                     </div>
                 </form>
             </article>
         }
+    </div>
+
+    <div class="shop-bottom-actions container">
+        <a asp-controller="Cart" asp-action="Index" class="btn btn-outline">Ir al carrito</a>
+        <p class="subtle-note">También puedes usar el botón superior para abrir tu carrito en cualquier momento.</p>
     </div>
 </section>

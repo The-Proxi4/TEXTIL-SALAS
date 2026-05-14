@@ -4,6 +4,7 @@
     "dotnet ef": true,
     "git add": true,
     "git commit": true,
-    "git push": true
+    "git push": true,
+    "dotnet build": true
   }
 }
