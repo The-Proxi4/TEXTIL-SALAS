@@ -1,0 +1,9 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "git checkout": true,
+    "dotnet ef": true,
+    "git add": true,
+    "git commit": true,
+    "git push": true
+  }
+}

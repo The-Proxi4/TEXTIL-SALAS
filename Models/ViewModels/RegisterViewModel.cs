@@ -14,7 +14,7 @@ namespace textil_salas.Models
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
-        [MinLength(6, ErrorMessage = "Mínimo 6 caracteres")]
+        [MinLength(12, ErrorMessage = "Mínimo 12 caracteres")]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; } = string.Empty;

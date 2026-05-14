@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using textil_salas.Models;
 
@@ -10,9 +11,11 @@ using textil_salas.Models;
 namespace textil_salas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260514182140_Carrito")]
+    partial class Carrito
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.7");
@@ -250,85 +253,6 @@ namespace textil_salas.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("textil_salas.Models.Order", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Reference")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("textil_salas.Models.OrderItem", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItems");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -378,20 +302,6 @@ namespace textil_salas.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("textil_salas.Models.OrderItem", b =>
-                {
-                    b.HasOne("textil_salas.Models.Order", null)
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("textil_salas.Models.Order", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

@@ -43,6 +43,15 @@
                         <span>@string.Join(" · ", item.Sizes)</span>
                     </div>
                 </div>
+                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="product-cart-form">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="productId" value="@item.Id" />
+                    <div class="product-cart-controls">
+                        <label>Cantidad</label>
+                        <input type="number" name="quantity" min="1" value="1" />
+                        <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                    </div>
+                </form>
             </article>
         }
     </div>
