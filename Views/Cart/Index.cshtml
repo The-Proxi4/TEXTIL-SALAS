@@ -22,66 +22,78 @@
 
     @if (!Model.Items.Any())
     {
-        <div class="panel">
+        <div class="panel cart-empty-panel">
             <p>No tienes productos en el carrito.</p>
             <a asp-controller="Home" asp-action="Shop" class="btn btn-primary">Volver a la tienda</a>
         </div>
     }
     else
     {
-        <div class="panel">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Items)
-                    {
+        <div class="panel cart-panel">
+            <div class="cart-header">
+                <div>
+                    <p class="eyebrow">Carrito</p>
+                    <h2>Revisa tus productos</h2>
+                    <p>Actualiza cantidades, elimina lo que no necesites y pulsa finalizar compra.</p>
+                </div>
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary cart-top-checkout">Finalizar compra</a>
+            </div>
+
+            <div class="cart-table-wrap">
+                <table class="cart-table">
+                    <thead>
                         <tr>
-                            <td class="cart-product">
-                                <img src="@item.ImageUrl" alt="@item.ProductName" />
-                                <div>
-                                    <strong>@item.ProductName</strong>
-                                </div>
-                            </td>
-                            <td>S/@item.UnitPrice.ToString("0.00")</td>
-                            <td>
-                                <form asp-action="UpdateQuantity" method="post" class="cart-quantity-form">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <input type="number" name="quantity" min="1" value="@item.Quantity" />
-                                    <button type="submit" class="btn btn-secondary">Actualizar</button>
-                                </form>
-                            </td>
-                            <td>
-                                S/@(item.UnitPrice * item.Quantity).ToString("0.00")
-                            </td>
-                            <td>
-                                <form asp-action="Remove" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </td>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td class="cart-product">
+                                    <img src="@item.ImageUrl" alt="@item.ProductName" />
+                                    <div>
+                                        <strong>@item.ProductName</strong>
+                                    </div>
+                                </td>
+                                <td>S/@item.UnitPrice.ToString("0.00")</td>
+                                <td>
+                                    <form asp-action="UpdateQuantity" method="post" class="cart-quantity-form">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="number" name="quantity" min="1" value="@item.Quantity" />
+                                        <button type="submit" class="btn btn-secondary">Actualizar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    S/@(item.UnitPrice * item.Quantity).ToString("0.00")
+                                </td>
+                                <td>
+                                    <form asp-action="Remove" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
             <div class="cart-summary">
-                <div>
-                    <h3>Resumen</h3>
-                    <p>Total de la compra:</p>
+                <div class="summary-box">
+                    <span>Total de la compra</span>
                     <strong>S/@Model.Total.ToString("0.00")</strong>
                 </div>
-                <a asp-controller="Home" asp-action="Shop" class="btn btn-secondary">Seguir comprando</a>
-                <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary">Continuar compra</a>
+                <div class="cart-actions">
+                    <a asp-controller="Home" asp-action="Shop" class="btn btn-secondary">Seguir comprando</a>
+                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary">Finalizar compra</a>
+                </div>
             </div>
         </div>
     }

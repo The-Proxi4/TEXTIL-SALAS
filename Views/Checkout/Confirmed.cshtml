@@ -9,10 +9,13 @@
 </section>
 
 <section class="container section-tight">
-    <div class="panel">
-        <p>Tu número de orden es:</p>
-        <h2>@ViewData["OrderNumber"]</h2>
-        <p>En breve recibirás más información sobre el seguimiento.</p>
+    <div class="panel confirm-panel">
+        <div class="confirm-badge">✓</div>
+        <p class="eyebrow">Compra confirmada</p>
+        <h2>¡Gracias por tu compra!</h2>
+        <p>Tu pedido se ha generado correctamente y estamos preparando el envío.</p>
+        <div class="order-number">Orden #@ViewData["OrderNumber"]</div>
+        <p class="confirm-footnote">Recibirás una notificación pronto con los detalles de seguimiento.</p>
         <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Volver al inicio</a>
     </div>
 </section>
