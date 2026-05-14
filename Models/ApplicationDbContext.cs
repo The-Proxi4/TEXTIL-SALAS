@@ -11,5 +11,7 @@ namespace textil_salas.Models
         }
 
         public DbSet<CartItem> CartItems { get; set; } = null!;
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<OrderItem> OrderItems { get; set; } = null!;
     }
 }
