@@ -9,5 +9,7 @@ namespace textil_salas.Models
             : base(options)
         {
         }
+
+        public DbSet<CartItem> CartItems { get; set; } = null!;
     }
 }
