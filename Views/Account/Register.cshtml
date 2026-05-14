@@ -19,6 +19,8 @@
             <form asp-action="Register" method="post" class="form-stack">
                 @Html.AntiForgeryToken()
 
+                <div asp-validation-summary="All" class="validation-summary-errors"></div>
+
                 @* CA-1: Nombre completo *@
                 <div>
                     <label asp-for="NombreCompleto">Nombre completo</label>
@@ -38,6 +40,7 @@
                     <label asp-for="Password">Contraseña</label>
                     <input asp-for="Password" type="password" placeholder="••••••••" />
                     <span asp-validation-for="Password" class="field-error"></span>
+                    <p class="help-note">La contraseña debe tener al menos 12 caracteres e incluir mayúsculas, minúsculas y números.</p>
                 </div>
 
                 @* Confirmar contraseña *@

@@ -50,8 +50,8 @@ namespace textil_salas.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
+                TempData["RegistroExitoso"] = "Tu cuenta se creó correctamente. Puedes iniciar sesión ahora.";
+                return RedirectToAction("Login", "Account");
             }
 
             foreach (var error in result.Errors)

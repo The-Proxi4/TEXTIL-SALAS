@@ -1,0 +1,88 @@
+@model textil_salas.Models.CartViewModel
+
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<section class="page-header container narrow">
+    <p class="eyebrow">Carrito</p>
+    <h1>Mi carrito</h1>
+    <p>Revisa tus productos antes de continuar con la compra.</p>
+</section>
+
+<section class="container section-tight">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-success">✓ @TempData["Success"]</div>
+    }
+    else if (TempData["Error"] != null)
+    {
+        <div class="alert-error">✗ @TempData["Error"]</div>
+    }
+
+    @if (!Model.Items.Any())
+    {
+        <div class="panel">
+            <p>No tienes productos en el carrito.</p>
+            <a asp-controller="Home" asp-action="Shop" class="btn btn-primary">Volver a la tienda</a>
+        </div>
+    }
+    else
+    {
+        <div class="panel">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="cart-product">
+                                <img src="@item.ImageUrl" alt="@item.ProductName" />
+                                <div>
+                                    <strong>@item.ProductName</strong>
+                                </div>
+                            </td>
+                            <td>S/@item.UnitPrice.ToString("0.00")</td>
+                            <td>
+                                <form asp-action="UpdateQuantity" method="post" class="cart-quantity-form">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <input type="number" name="quantity" min="1" value="@item.Quantity" />
+                                    <button type="submit" class="btn btn-secondary">Actualizar</button>
+                                </form>
+                            </td>
+                            <td>
+                                S/@(item.UnitPrice * item.Quantity).ToString("0.00")
+                            </td>
+                            <td>
+                                <form asp-action="Remove" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div>
+                    <h3>Resumen</h3>
+                    <p>Total de la compra:</p>
+                    <strong>S/@Model.Total.ToString("0.00")</strong>
+                </div>
+                <a asp-controller="Home" asp-action="Shop" class="btn btn-secondary">Seguir comprando</a>
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary">Continuar compra</a>
+            </div>
+        </div>
+    }
+</section>
