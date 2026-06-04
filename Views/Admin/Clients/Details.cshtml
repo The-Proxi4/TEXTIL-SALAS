@@ -4,14 +4,27 @@
     ViewData["Title"] = "Detalle cliente";
 }
 
-<h2>Detalle cliente</h2>
-
-<dl class="row">
-    <dt class="col-sm-2">Nombre</dt><dd class="col-sm-10">@Model.NombreCompleto</dd>
-    <dt class="col-sm-2">Email</dt><dd class="col-sm-10">@Model.Email</dd>
-    <dt class="col-sm-2">Teléfono</dt><dd class="col-sm-10">@Model.PhoneNumber</dd>
-    <dt class="col-sm-2">Estado</dt><dd class="col-sm-10">@(Model.IsActive ? "Activo" : "Inactivo")</dd>
-    <dt class="col-sm-2">Desactivado</dt><dd class="col-sm-10">@(Model.DeactivatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "-")</dd>
-</dl>
-
-<a asp-action="Index" class="btn btn-secondary">Volver</a>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Detalle cliente</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Información</h5>
+                    <p><strong>Nombre:</strong> @Model.NombreCompleto</p>
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Teléfono:</strong> @Model.PhoneNumber</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Estado</h5>
+                    <p>@(Model.IsActive ? "Activo" : "Inactivo")</p>
+                    <p><strong>Desactivado:</strong> @(Model.DeactivatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "-")</p>
+                </div>
+            </div>
+            <div class="mt-3">
+                <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary ms-2">Editar</a>
+            </div>
+        </div>
+    </div>
+</div>
