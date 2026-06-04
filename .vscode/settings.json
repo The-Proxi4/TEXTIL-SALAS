@@ -6,5 +6,7 @@
     "git commit": true,
     "git push": true,
     "dotnet build": true
-  }
+  },
+  "snyk.advanced.organization": "838a2176-1c5f-4656-834c-27840e6c8ab2",
+  "snyk.advanced.autoSelectOrganization": true
 }
