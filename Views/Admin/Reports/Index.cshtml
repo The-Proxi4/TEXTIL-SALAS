@@ -1,0 +1,75 @@
+@model textil_salas.ViewModels.ReportViewModel
+
+@{
+    ViewData["Title"] = "Reportes administrativos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" asp-action="Index" asp-controller="Reports" class="form-inline">
+    <div>
+        <label>Tipo:</label>
+        <select name="reportType" class="form-control">
+            <option value="sales" selected="@(Model.ReportType == "sales")">Ventas</option>
+            <option value="orders" selected="@(Model.ReportType == "orders")">Pedidos</option>
+            <option value="products" selected="@(Model.ReportType == "products")">Productos</option>
+        </select>
+    </div>
+    <div>
+        <label>Desde:</label>
+        <input type="date" name="startDate" value="@(Model.StartDate?.ToString("yyyy-MM-dd"))" class="form-control" />
+    </div>
+    <div>
+        <label>Hasta:</label>
+        <input type="date" name="endDate" value="@(Model.EndDate?.ToString("yyyy-MM-dd"))" class="form-control" />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Generar</button>
+        <a asp-action="Export" asp-controller="Reports" asp-route-reportType="@Model.ReportType" asp-route-startDate="@Model.StartDate?.ToString("o")" asp-route-endDate="@Model.EndDate?.ToString("o")" class="btn btn-secondary">Exportar (CSV)</a>
+    </div>
+</form>
+
+<hr />
+
+@if (Model.ReportType == "products")
+{
+    <h3>Productos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Id</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Activo</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Products ?? new())
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Name</td>
+                    <td>@p.Category</td>
+                    <td>@p.Price</td>
+                    <td>@(p.IsActive ? "Sí" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Pedidos / Ventas</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Orden</th><th>Fecha</th><th>Usuario</th><th>Total</th><th>Items</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model.Orders ?? new())
+            {
+                <tr>
+                    <td>@o.OrderNumber</td>
+                    <td>@o.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@o.UserId</td>
+                    <td>@o.Total</td>
+                    <td>@(o.Items?.Count ?? 0)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
