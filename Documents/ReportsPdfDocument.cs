@@ -27,7 +27,7 @@ public class ReportsPdfDocument : IDocument
                 col.Item().Text("Reportes administrativos").FontSize(20).Bold();
                 col.Item().Text($"Tipo: {_vm.ReportType}").FontSize(12);
                 col.Item().Text($"Periodo: {_vm.StartDate?.ToString("yyyy-MM-dd") ?? "-"} \u2013 {_vm.EndDate?.ToString("yyyy-MM-dd") ?? "-"}").FontSize(10);
-                col.Item().LineHorizontal(1).Spacing(5);
+                col.Item().LineHorizontal(1);
 
                 if (_vm.ReportType == "products")
                 {

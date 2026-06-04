@@ -79,8 +79,8 @@ public class ReportsController : Controller
         if (format?.ToLowerInvariant() == "pdf")
         {
             var doc = new textil_salas.Documents.ReportsPdfDocument(vm);
-            QuestPDF.Settings.License = QuestPDF.Fluent.LicenseType.Community;
-            var pdfBytes = doc.GeneratePdf();
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
+            var pdfBytes = QuestPDF.Fluent.Document.Create(doc).GeneratePdf();
             var fileName = reportType + "_report_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".pdf";
             return File(pdfBytes, "application/pdf", fileName);
         }
