@@ -18,14 +18,14 @@ public class ClientsController : Controller
     }
 
     [HttpGet("")]
-    public async Task<IActionResult> Index(string q = null, string email = null, string status = "all")
+    public async Task<IActionResult> Index(string? q = null, string? email = null, string status = "all")
     {
         var users = _db.Users.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(q))
-            users = users.Where(u => u.NombreCompleto.Contains(q) || u.UserName.Contains(q));
+            users = users.Where(u => u.NombreCompleto.Contains(q!) || u.UserName.Contains(q!));
         if (!string.IsNullOrWhiteSpace(email))
-            users = users.Where(u => u.Email.Contains(email));
+            users = users.Where(u => u.Email.Contains(email!));
         if (status == "active")
             users = users.Where(u => u.IsActive);
         else if (status == "inactive")
