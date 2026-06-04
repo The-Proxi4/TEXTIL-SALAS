@@ -26,6 +26,19 @@ namespace textil_salas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos.");
+                return View(model);
+            }
+
+            if (!user.IsActive)
+            {
+                ModelState.AddModelError(string.Empty, "La cuenta está inactiva. Contacta al administrador.");
+                return View(model);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {

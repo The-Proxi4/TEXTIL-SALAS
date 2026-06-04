@@ -1,0 +1,30 @@
+@model textil_salas.ViewModels.ClientViewModel
+
+@{
+    ViewData["Title"] = "Editar cliente";
+}
+
+<h2>Editar cliente</h2>
+
+<form method="post" asp-controller="Admin/Clients" asp-action="Edit" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label>Nombre completo</label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Teléfono</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Activo</label>
+        <input asp-for="IsActive" type="checkbox" />
+    </div>
+    <button class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

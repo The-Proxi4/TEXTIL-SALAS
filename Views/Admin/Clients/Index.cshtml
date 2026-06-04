@@ -1,0 +1,43 @@
+@model List<textil_salas.ViewModels.ClientViewModel>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<form method="get" class="form-inline">
+    <input type="text" name="q" placeholder="Nombre o usuario" class="form-control" />
+    <input type="text" name="email" placeholder="Email" class="form-control" />
+    <select name="status" class="form-control">
+        <option value="all">Todos</option>
+        <option value="active">Activos</option>
+        <option value="inactive">Inactivos</option>
+    </select>
+    <button class="btn btn-primary">Buscar</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Estado</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.NombreCompleto</td>
+            <td>@c.Email</td>
+            <td>@c.PhoneNumber</td>
+            <td>@(c.IsActive ? "Activo" : "Inactivo")</td>
+            <td>
+                <a asp-controller="Admin/Clients" asp-action="Details" asp-route-id="@c.Id" class="btn btn-sm btn-outline">Ver</a>
+                <a asp-controller="Admin/Clients" asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-outline">Editar</a>
+                <form method="post" asp-controller="Admin/Clients" asp-action="ToggleActive" asp-route-id="@c.Id" style="display:inline;">
+                    <input type="hidden" name="__RequestVerificationToken" value="@Antiforgery.GetTokens(HttpContext).RequestToken" />
+                    <button class="btn btn-sm btn-danger">@(c.IsActive ? "Desactivar" : "Reactivar")</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
