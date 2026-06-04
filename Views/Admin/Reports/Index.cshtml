@@ -25,7 +25,7 @@
     </div>
     <div>
         <button type="submit" class="btn btn-primary">Generar</button>
-        <a asp-action="Export" asp-controller="Reports" asp-route-reportType="@Model.ReportType" asp-route-startDate="@Model.StartDate?.ToString("o")" asp-route-endDate="@Model.EndDate?.ToString("o")" class="btn btn-secondary">Exportar (CSV)</a>
+        <a asp-action="Export" asp-controller="Reports" asp-route-reportType="@Model.ReportType" asp-route-startDate="@Model.StartDate?.ToString("o")" asp-route-endDate="@Model.EndDate?.ToString("o")" asp-route-format="pdf" class="btn btn-secondary">Exportar (PDF)</a>
     </div>
 </form>
 

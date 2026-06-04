@@ -48,36 +48,60 @@ public class ReportsController : Controller
     }
 
     [HttpGet]
-    public IActionResult Export(string reportType = "sales", DateTime? startDate = null, DateTime? endDate = null)
+    public IActionResult Export(string reportType = "sales", DateTime? startDate = null, DateTime? endDate = null, string format = "csv")
     {
-        // For simplicity export CSV that Excel can open
-        var csv = new System.Text.StringBuilder();
+        // normalize end date
+        if (endDate.HasValue)
+            endDate = endDate.Value.Date.AddDays(1).AddTicks(-1);
+
+        var vm = new ReportViewModel
+        {
+            ReportType = reportType,
+            StartDate = startDate,
+            EndDate = endDate
+        };
 
         if (reportType == "products")
         {
-            csv.AppendLine("Id,Name,Category,Price,Active");
-            foreach (var p in FakeDatabase.Instance.Products)
-            {
-                csv.AppendLine($"{p.Id},\"{p.Name}\",\"{p.Category}\",{p.Price},{(p.IsActive ? "1" : "0")}");
-            }
+            vm.Products = FakeDatabase.Instance.Products;
         }
         else
         {
-            var orders = _db.Orders.AsQueryable();
+            var ordersQuery = _db.Orders.AsQueryable();
             if (startDate.HasValue)
-                orders = orders.Where(o => o.CreatedAt >= startDate.Value);
+                ordersQuery = ordersQuery.Where(o => o.CreatedAt >= startDate.Value);
             if (endDate.HasValue)
-                orders = orders.Where(o => o.CreatedAt <= endDate.Value.Date.AddDays(1).AddTicks(-1));
+                ordersQuery = ordersQuery.Where(o => o.CreatedAt <= endDate.Value);
 
+            vm.Orders = ordersQuery.OrderByDescending(o => o.CreatedAt).ToList();
+        }
+
+        if (format?.ToLowerInvariant() == "pdf")
+        {
+            var doc = new textil_salas.Documents.ReportsPdfDocument(vm);
+            QuestPDF.Settings.License = QuestPDF.Fluent.LicenseType.Community;
+            var pdfBytes = doc.GeneratePdf();
+            var fileName = reportType + "_report_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".pdf";
+            return File(pdfBytes, "application/pdf", fileName);
+        }
+
+        // default CSV export
+        var csv = new System.Text.StringBuilder();
+        if (reportType == "products")
+        {
+            csv.AppendLine("Id,Name,Category,Price,Active");
+            foreach (var p in vm.Products ?? new())
+                csv.AppendLine($"{p.Id},\"{p.Name}\",\"{p.Category}\",{p.Price},{(p.IsActive ? "1" : "0")}");
+        }
+        else
+        {
             csv.AppendLine("OrderNumber,CreatedAt,UserId,Total,ItemsCount");
-            foreach (var o in orders)
-            {
+            foreach (var o in vm.Orders ?? new())
                 csv.AppendLine($"{o.OrderNumber},{o.CreatedAt:O},{o.UserId},{o.Total},{o.Items?.Count ?? 0}");
-            }
         }
 
         var bytes = System.Text.Encoding.UTF8.GetBytes(csv.ToString());
-        var fileName = reportType + "_report_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".csv";
-        return File(bytes, "text/csv", fileName);
+        var csvFile = reportType + "_report_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".csv";
+        return File(bytes, "text/csv", csvFile);
     }
 }
