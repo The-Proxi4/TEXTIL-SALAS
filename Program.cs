@@ -52,4 +52,38 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+// Seed admin role and user for initial access (development only)
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    const string adminRole = "Admin";
+    const string adminEmail = "admin@local";
+    const string adminPassword = "Admin12345!A"; // 12 chars to satisfy password policy
+
+    if (!roleManager.Roles.Any(r => r.Name == adminRole))
+    {
+        roleManager.CreateAsync(new IdentityRole(adminRole)).GetAwaiter().GetResult();
+    }
+
+    var admin = userManager.FindByEmailAsync(adminEmail).GetAwaiter().GetResult();
+    if (admin == null)
+    {
+        admin = new ApplicationUser
+        {
+            UserName = adminEmail,
+            Email = adminEmail,
+            NombreCompleto = "Administrador",
+            IsActive = true
+        };
+        var createResult = userManager.CreateAsync(admin, adminPassword).GetAwaiter().GetResult();
+        if (createResult.Succeeded)
+        {
+            userManager.AddToRoleAsync(admin, adminRole).GetAwaiter().GetResult();
+        }
+    }
+}
+
 app.Run();
