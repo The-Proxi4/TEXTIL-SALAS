@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using textil_salas.Models;
 using textil_salas.ViewModels;
+using QuestPDF;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 
 namespace textil_salas.Controllers;
 
@@ -80,9 +83,7 @@ public class ReportsController : Controller
         {
             var doc = new textil_salas.Documents.ReportsPdfDocument(vm);
             QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
-            var ms = new System.IO.MemoryStream();
-            QuestPDF.Fluent.Document.Create(container => doc.Compose(container)).GeneratePdf(ms);
-            var pdfBytes = ms.ToArray();
+            var pdfBytes = doc.GeneratePdf();
             var fileName = reportType + "_report_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".pdf";
             return File(pdfBytes, "application/pdf", fileName);
         }
