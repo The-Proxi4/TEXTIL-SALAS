@@ -8,11 +8,47 @@ namespace textil_salas.Controllers
     [Route("admin")]
     public class AdminController : Controller
     {
+        private readonly ApplicationDbContext? _db;
+
+        public AdminController(ApplicationDbContext? db = null)
+        {
+            _db = db;
+        }
+
         [HttpGet("")]
         public IActionResult Index()
         {
             var model = CreateDashboardViewModel();
             return View(model);
+        }
+
+        [HttpGet("reports")]
+        public IActionResult Reports(string reportType = "sales", DateTime? startDate = null, DateTime? endDate = null)
+        {
+            // simple reuse of ReportViewModel used by ReportsController
+            var vm = new textil_salas.ViewModels.ReportViewModel
+            {
+                ReportType = reportType,
+                StartDate = startDate,
+                EndDate = endDate
+            };
+
+            if (reportType == "products")
+            {
+                vm.Products = textil_salas.Models.FakeDatabase.Instance.Products;
+            }
+            else if (_db != null)
+            {
+                var ordersQuery = _db.Orders.AsQueryable();
+                if (startDate.HasValue)
+                    ordersQuery = ordersQuery.Where(o => o.CreatedAt >= startDate.Value);
+                if (endDate.HasValue)
+                    ordersQuery = ordersQuery.Where(o => o.CreatedAt <= endDate.Value.Date.AddDays(1).AddTicks(-1));
+
+                vm.Orders = ordersQuery.OrderByDescending(o => o.CreatedAt).Take(100).ToList();
+            }
+
+            return View("Reports/Index", vm);
         }
 
         private AdminDashboardViewModel CreateDashboardViewModel()
